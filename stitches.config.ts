@@ -1,4 +1,4 @@
-import { createStitches } from '@stitches/react';
+import { createStitches, defaultThemeMap } from '@stitches/react';
 import { baseColors, darkColors } from 'lib/colors';
 
 export const { styled, getCssText, createTheme, globalCss, css } =
@@ -51,6 +51,7 @@ export const { styled, getCssText, createTheme, globalCss, css } =
     },
     // Rewrite the object theme options for css prop
     themeMap: {
+      ...defaultThemeMap,
       margin: `spacing`,
       borderRadius: `radius`,
       zIndex: `z-index`,

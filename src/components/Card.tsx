@@ -1,4 +1,5 @@
-import { css, darkTheme, styled } from 'stitches.config';
+import clsx from 'clsx';
+import { createTheme, css, darkTheme, styled } from 'stitches.config';
 
 const CardContainer = styled(`div`, {
   backgroundColor: `$primary`,
@@ -30,14 +31,21 @@ const button = css({
 });
 
 interface CardProps {
-  theme: 'dark' | 'light';
+  theme?: 'dark' | 'light';
 }
+const productTheme = createTheme({
+  colors: {
+    primary: `blue`,
+  },
+});
 
 export function Card({ theme }: CardProps) {
   const themeCss = theme === `dark` ? darkTheme : undefined;
 
   return (
-    <CardContainer className={themeCss}>
+    <CardContainer
+      className={clsx(themeCss?.className, productTheme.className)}
+    >
       <h1>Hello World</h1>
 
       <p>
