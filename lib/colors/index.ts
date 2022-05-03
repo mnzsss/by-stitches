@@ -1,3 +1,4 @@
+// Default Theme Colors
 export const baseColors = {
   primary: `#fff`,
   secondary: `#121212`,
@@ -21,6 +22,7 @@ export const baseColors = {
   'footer-background': `$contrast`,
 };
 
+// Dark theme colors
 export const darkColors = {
   primary: `#000`,
   secondary: `#fff`,

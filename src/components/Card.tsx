@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { createTheme, css, darkTheme, styled } from 'stitches.config';
+import { createTheme, css, darkTheme, styled } from 'lib/stitches.config';
 
 const CardContainer = styled(`div`, {
   backgroundColor: `$primary`,
@@ -30,20 +30,26 @@ const button = css({
   },
 });
 
-interface CardProps {
-  theme?: 'dark' | 'light';
-}
 const productTheme = createTheme({
   colors: {
     primary: `blue`,
   },
 });
 
-export function Card({ theme }: CardProps) {
+type ButtonVariant = Parameters<typeof button>[0];
+type CardContainer = Parameters<typeof CardContainer>[0];
+
+type CardProps = {
+  theme?: 'dark' | 'light';
+  cardContainerCss?: CardContainer['css'];
+} & ButtonVariant;
+
+export function Card({ theme, variant, css, cardContainerCss }: CardProps) {
   const themeCss = theme === `dark` ? darkTheme : undefined;
 
   return (
     <CardContainer
+      css={cardContainerCss}
       className={clsx(themeCss?.className, productTheme.className)}
     >
       <h1>Hello World</h1>
@@ -55,7 +61,14 @@ export function Card({ theme }: CardProps) {
         quas reprehenderit!
       </p>
 
-      <button className={button()}>See More</button>
+      <button
+        className={button({
+          variant,
+          css,
+        })}
+      >
+        See More
+      </button>
     </CardContainer>
   );
 }
