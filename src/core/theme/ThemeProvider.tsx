@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import clsx from 'clsx';
 import produce, { Draft } from 'immer';
 import {
   createContext,
   ElementType,
+  FunctionComponent,
   ReactNode,
   useCallback,
   useContext,
@@ -10,8 +12,9 @@ import {
   useMemo,
   useReducer,
 } from 'react';
+import { ObjectWith } from '../interfaces/ObjectWith';
 
-import { Theme, ThemeFlatted, ThemeFont } from './interfaces/Theme';
+import { Theme, ThemeFlatted, ThemeFont } from '../interfaces/Theme';
 
 type ThemeContextType = {
   themes: ThemeFlatted[];
@@ -308,17 +311,42 @@ export function useTheme(theme?: Theme | Theme[]) {
 
 export interface WithThemeKeyProps {
   theme?: 'dark' | 'light';
+  'data-theme-key'?: string;
 }
 
-// export function withThemeKey<P>(
-//   Component: FunctionComponent<P & WithThemeKeyProps>,
-//   name: string,
-// ): FunctionComponent<P & WithThemeKeyProps> {
-//   Component.displayName = name;
+/**
+ * Adds states to a ThemeKey
+ *
+ * Usage:
+ * ```
+ * composeThemeKey('.Button', 'primary', { hovered: true }) -> '.Button:primary:hovered'
+ * ```
+ */
+export function composeThemeKey(
+  props: ObjectWith<WithThemeKeyProps> | string,
+  ...states: (string | { [state: string]: boolean })[]
+) {
+  const activeStates = clsx(...states)
+    .split(` `)
+    .filter(Boolean)
+    .map((state) => `:` + state)
+    .join(``);
 
-//   return (props) => {
-//     const themeKey = [props[`data-theme-key`], name];
+  const key = typeof props === `string` ? props : props[`data-theme-key`] ?? ``;
 
-//     return <Component {...props} data-theme-key={themeKey.join(`.`)} />;
-//   };
-// }
+  return (`.` + key).replace(/\.+/g, `.`) + activeStates;
+}
+
+export function withThemeKey<P>(
+  Component: FunctionComponent<P & WithThemeKeyProps>,
+  name: string,
+): FunctionComponent<P & WithThemeKeyProps> {
+  Component.displayName = name;
+
+  // eslint-disable-next-line react/display-name
+  return (props) => {
+    const themeKey = [props[`data-theme-key`], name];
+
+    return <Component {...props} data-theme-key={themeKey.join(`.`)} />;
+  };
+}

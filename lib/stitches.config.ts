@@ -1,5 +1,6 @@
 import { createStitches, defaultThemeMap } from '@stitches/react';
 import { baseColors, darkColors } from 'lib/colors';
+import type * as Stitches from '@stitches/react';
 
 // Setup Default Theme
 export const { styled, getCssText, createTheme, globalCss, css } =
@@ -24,33 +25,37 @@ export const { styled, getCssText, createTheme, globalCss, css } =
       },
       // Border Radius Sizes
       radius: {
-        'x-small': 4,
-        small: 8,
-        regular: 16,
-        large: 24,
-        pill: 48,
+        'x-small': `4px`,
+        small: `8px`,
+        regular: `16px`,
+        large: `24px`,
+        pill: `48px`,
       },
       // Spacing Sizes
       spacing: {
-        'xxxx-small': 4,
-        'xxx-small': 8,
-        'xx-small': 12,
-        'x-small': 16,
-        small: 20,
-        regular: 24,
-        large: 32,
-        'x-large': 40,
-        'xx-large': 48,
-        'xxx-large': 56,
-        'xxxx-large': 64,
-        'xxxxx-large': 72,
-        'xxxxxx-large': 80,
+        'xxxx-small': `4px`,
+        'xxx-small': `8px`,
+        'xx-small': `12px`,
+        'x-small': `16px`,
+        small: `20px`,
+        regular: `24px`,
+        large: `32px`,
+        'x-large': `40px`,
+        'xx-large': `48px`,
+        'xxx-large': `56px`,
+        'xxxx-large': `64px`,
+        'xxxxx-large': `72px`,
+        'xxxxxx-large': `80px`,
       },
     },
     // Utilities for css
     utils: {
-      mx: (value: number) => ({ marginLeft: value, marginRight: value }),
-      my: (value: number) => ({ marginTop: value, marginBottom: value }),
+      p: (value: Stitches.ScaleValue<'spacing'>) => ({
+        paddingBottom: value,
+        paddingTop: value,
+        paddingLeft: value,
+        paddingRight: value,
+      }),
     },
     // Media Query
     media: {
@@ -130,7 +135,7 @@ export const { styled, getCssText, createTheme, globalCss, css } =
     },
   });
 
-// Dark Theme Definitions
+// Dark Theme
 export const darkTheme = createTheme(`dark`, {
   colors: {
     ...darkColors,
@@ -140,7 +145,7 @@ export const darkTheme = createTheme(`dark`, {
 // We can declare the styles here or in pages/_app.tsx
 globalCss({
   body: {
-    background: `$secondary`,
-    color: `$primary`,
+    background: `$primary`,
+    color: `$secondary`,
   },
 })();

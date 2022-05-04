@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { createTheme, css, darkTheme, styled } from 'lib/stitches.config';
+import { createTheme, darkTheme, styled } from 'lib/stitches.config';
 
 const CardContainer = styled(`div`, {
   backgroundColor: `$primary`,
@@ -9,7 +9,7 @@ const CardContainer = styled(`div`, {
   maxWidth: 520,
 });
 
-const button = css({
+const Button = styled(`button`, {
   backgroundColor: `$secondary`,
   color: `$primary`,
   border: 0,
@@ -31,26 +31,27 @@ const button = css({
 });
 
 const productTheme = createTheme({
-  colors: {
-    primary: `blue`,
-  },
+  // colors: {
+  //   primary: `blue`,
+  // },
 });
 
-type ButtonVariant = Parameters<typeof button>[0];
+type ButtonVariant = Parameters<typeof Button>[0];
 type CardContainer = Parameters<typeof CardContainer>[0];
 
 type CardProps = {
   theme?: 'dark' | 'light';
   cardContainerCss?: CardContainer['css'];
-} & ButtonVariant;
+  buttonVariant?: ButtonVariant['variant'];
+};
 
-export function Card({ theme, variant, css, cardContainerCss }: CardProps) {
+export function Card({ theme, buttonVariant, cardContainerCss }: CardProps) {
   const themeCss = theme === `dark` ? darkTheme : undefined;
 
   return (
     <CardContainer
       css={cardContainerCss}
-      className={clsx(themeCss?.className, productTheme.className)}
+      className={clsx(themeCss?.className, productTheme?.className)}
     >
       <h1>Hello World</h1>
 
@@ -61,14 +62,7 @@ export function Card({ theme, variant, css, cardContainerCss }: CardProps) {
         quas reprehenderit!
       </p>
 
-      <button
-        className={button({
-          variant,
-          css,
-        })}
-      >
-        See More
-      </button>
+      <Button variant={buttonVariant}>See More</Button>
     </CardContainer>
   );
 }
