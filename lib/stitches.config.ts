@@ -47,6 +47,23 @@ export const { styled, getCssText, createTheme, globalCss, css } =
         'xxxxx-large': `72px`,
         'xxxxxx-large': `80px`,
       },
+      fonts: {
+        body: `Barlow Condensed`,
+      },
+      fontSizes: {
+        body: `16px`,
+      },
+      lineHeights: {
+        body: `24px`,
+      },
+      fontWeights: {
+        normal: `400`,
+      },
+      sizes: {
+        vw: `100vw`,
+        vh: `100vh`,
+        full: `100%`,
+      },
     },
     // Utilities for css
     utils: {
@@ -144,8 +161,31 @@ export const darkTheme = createTheme(`dark`, {
 
 // We can declare the styles here or in pages/_app.tsx
 globalCss({
-  body: {
-    background: `$primary`,
-    color: `$secondary`,
+  'html body': {
+    width: `$full`,
+    margin: 0,
+    padding: 0,
+    scrollBehavior: `smooth`,
+    scrollPaddingTop: `calc($large + $large)`,
   },
+  body: {
+    minHeight: `100vh`,
+    height: `100vh`,
+    background: `$background`,
+    color: `$body`,
+    fontFamily: `$body`,
+    fontSize: `$body`,
+    fontWeight: `$normal`,
+    lineHeight: `$body`,
+  },
+  '@font-face': [
+    {
+      fontFamily: `Barlow Condensed`,
+      fontStyle: `normal`,
+      fontWeight: `400`,
+      fontDisplay: `block`,
+      src: `local('Barlow Condensed Regular'), local('BarlowCondensed-Regular'), url(https://beyoung.com.br/fonts/s/barlowcondensed/v4/HTx3L3I-JCGChYJ8VI-L6OO_au7B6xHT2g.woff2), format('woff2')`,
+      unicodeRange: `U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD`,
+    },
+  ],
 })();
