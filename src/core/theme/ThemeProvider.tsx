@@ -251,6 +251,12 @@ export function ThemeProvider({
     themeState || initializeThemeState(theme),
   );
 
+  // const themeStoraged = localStorage.getItem(`theme`);
+
+  // useEffect(() => {
+  //   document.body.classList.toggle(`dark`, themeStoraged === `dark`);
+  // }, [themeStoraged]);
+
   const update = useCallback(
     (theme: Theme | Theme[]) => send({ type: `UPDATE`, theme }),
     [send],

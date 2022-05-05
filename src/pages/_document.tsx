@@ -7,10 +7,12 @@ export default class Document extends NextDocument {
     return (
       <Html lang="en">
         <Head>
-          <style
-            id="stitches"
-            dangerouslySetInnerHTML={{ __html: getCssText() }}
-          />
+          {process.env.NODE_ENV === `development` && (
+            <style
+              id="stitches"
+              dangerouslySetInnerHTML={{ __html: getCssText() }}
+            />
+          )}
         </Head>
         <body>
           <Main />

@@ -10,29 +10,46 @@ const CardContainer = styled(`div`, {
 });
 
 const Button = styled(`button`, {
-  backgroundColor: `$secondary`,
-  color: `$primary`,
-  border: 0,
   borderRadius: 8,
-  padding: `6px 12px`,
   marginTop: 12,
-  fontSize: 12,
+  appearance: `none`,
+  outline: `none`,
 
   variants: {
     variant: {
-      outline: {
-        border: 1,
-        borderColor: `$primary`,
+      primary: {
+        backgroundColor: `$secondary`,
         color: `$primary`,
+        border: 0,
+      },
+      outline: {
+        borderWidth: 1,
+        borderColor: `$secondary`,
+        color: `$secondary`,
         backgroundColor: `transparent`,
       },
     },
+    size: {
+      small: {
+        padding: `6px 12px`,
+        fontSize: 12,
+      },
+      regular: {
+        padding: `8px 16px`,
+        fontSize: 16,
+      },
+    },
+  },
+
+  defaultVariants: {
+    variant: `primary`,
+    size: `small`,
   },
 });
 
 const productTheme = createTheme({
   // colors: {
-  //   primary: `blue`,
+  //   primary: `red`,
   // },
 });
 
@@ -48,10 +65,18 @@ type CardProps = {
 export function Card({ theme, buttonVariant, cardContainerCss }: CardProps) {
   const themeCss = theme === `dark` ? darkTheme : undefined;
 
+  const cardContainerProduct = {
+    // https://stackoverflow.com/questions/58606868/get-the-key-of-a-nested-object
+    '&[data-theme-key=".ProductFormulaContainer.ContainerFormula"]': {
+      $colors$primary: `red`,
+    },
+  };
+
   return (
     <CardContainer
-      css={cardContainerCss}
+      css={{ ...cardContainerCss, ...cardContainerProduct }}
       className={clsx(themeCss?.className, productTheme?.className)}
+      data-theme-key=".ProductFormulaContainer.ContainerFormula"
     >
       <h1>Hello World</h1>
 
