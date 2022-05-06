@@ -10,17 +10,17 @@
 
 # Presentation
 
-- [] Explicar o Stitches o conceito
-- [] Explicar sobre design system (tokens, variants)
-- [] utilitários
-- [] Performance (https://stitches.dev/docs/benchmarks)
+- [ ] Explicar o Stitches o conceito
+- [ ] Explicar sobre design system (tokens, variants)
+- [ ] utilitários
+- [ ] Performance (https://stitches.dev/docs/benchmarks)
 
-- [] Explicar no código
-  - [] Demo
-  - [] Variant (defaultVariants, compoundVariants)
-  - [] Token
-  - [] Media Query
-  - [] Utils
-  - [] Cores (https://www.radix-ui.com/docs/colors/palette-composition/understanding-the-scale)
-  - [] Modal Radix (https://www.radix-ui.com/docs/primitives/components/dialog)
-  - [] Acessibilidade (https://www.radix-ui.com/)
+- [ ] Explicar no código
+  - [ ] Demo
+  - [ ] Variant (defaultVariants, compoundVariants)
+  - [ ] Token
+  - [ ] Media Query
+  - [ ] Utils
+  - [ ] Cores (https://www.radix-ui.com/docs/colors/palette-composition/understanding-the-scale)
+  - [ ] Modal Radix (https://www.radix-ui.com/docs/primitives/components/dialog)
+  - [ ] Acessibilidade (https://www.radix-ui.com/)
