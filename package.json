@@ -30,7 +30,7 @@
     "@stitches/core": "1.2.8",
     "@stitches/react": "1.2.8",
     "clsx": "1.1.1",
-    "immer": "9.0.12",
+    "immer": "9.0.21",
     "next": "12.1.5",
     "nookies": "2.5.2",
     "react": "18.1.0",
